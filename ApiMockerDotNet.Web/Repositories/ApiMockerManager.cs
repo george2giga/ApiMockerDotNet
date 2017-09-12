@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiMockerDotNet.Web.Utils
+namespace ApiMockerDotNet.Web.Repositories
 {
     public class ApiMockerManager : IApiMockerManager
     {

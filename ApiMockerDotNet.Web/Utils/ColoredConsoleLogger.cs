@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiMockerDotNet.Web.Utils
 {
@@ -24,7 +21,7 @@ namespace ApiMockerDotNet.Web.Utils
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 
