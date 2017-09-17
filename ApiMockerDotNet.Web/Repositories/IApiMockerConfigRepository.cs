@@ -8,6 +8,7 @@ namespace ApiMockerDotNet.Web.Repositories
 {
     public interface IApiMockerConfigRepository
     {
-        ApiMockerConfig Get(string fileName);
+        Task<ApiMockerConfig> GetConfig(string fileName);
+        Task<string> GetMockedResponse(string fileName, string folder = null);
     }
 }

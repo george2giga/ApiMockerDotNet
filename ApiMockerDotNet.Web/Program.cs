@@ -33,10 +33,9 @@ namespace ApiMockerDotNet.Web
                 
                 if (quiet!= null)
                 {
-                    bool isQuiet = false;
-                    bool.TryParse(quiet, out isQuiet);
+                    bool.TryParse(quiet, out var isQuiet);
                     ApiMockerCmdParams.Quiet = isQuiet;
-                }               
+                }     
             }
             var host = new WebHostBuilder()
                 .UseKestrel()

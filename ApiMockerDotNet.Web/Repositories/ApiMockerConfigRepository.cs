@@ -1,5 +1,8 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using ApiMockerDotNet.Web.Entities;
+using ApiMockerDotNet.Web.Utils;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -7,35 +10,67 @@ namespace ApiMockerDotNet.Web.Repositories
 {
     public class ApiMockerConfigRepository : IApiMockerConfigRepository
     {
-        private static IApiMockerConfigRepository _current = new ApiMockerConfigRepository();
-        
-        public static 
+        private readonly IFileSettingsProvider _fileSettingsProvider;
+        private readonly ILogger _logger;
+        private static ApiMockerConfig _config;
 
         private const string ConfigsFolder = "app-configs";
-        
-        public ApiMockerConfig Get(string fileName)
+        private const string MocksDefaultFolder = "app-mocks";
+
+        public ApiMockerConfigRepository(IFileSettingsProvider fileSettingsProvider, ILogger logger)
         {
-            var fullFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", ConfigsFolder, fileName);
-            if (!File.Exists(fullFilePath))
+            _fileSettingsProvider = fileSettingsProvider;
+            _logger = logger;
+        }
+
+        public async Task<ApiMockerConfig> GetConfig(string fileName)
+        {
+            if (_config == null)
             {
-                throw new FileNotFoundException($"File not found {fullFilePath} /n ApiMocker cannot start without a valid config file");
+                var fullFilePath = _fileSettingsProvider.GetFullFilePath(fileName, ConfigsFolder);
+                if (!_fileSettingsProvider.FileExists(fullFilePath))
+                {
+                    _logger.LogError($"File not found {fullFilePath} /n ApiMockerDotNet cannot start without a valid config file");
+                    _logger.LogInformation($"Please add a config file in the {ConfigsFolder} folder");
+                }
+
+                var fileContent = await _fileSettingsProvider.GetFileContent(fullFilePath);
+                var serializerSettings = new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()};
+
+                try
+                {
+                    var deserializedConfig = JsonConvert.DeserializeObject<ApiMockerConfig>(fileContent, serializerSettings);
+                    _config = deserializedConfig;
+                }
+                catch
+                {
+                    _logger.LogError($"Invalid JSON in config file {fullFilePath}");
+                    _logger.LogInformation($"Please add a valid file in the {ConfigsFolder} folder");
+                    _config = new ApiMockerConfig();
+                }
             }
 
-            var fileContent = File.ReadAllText(fullFilePath);
-            var serializerSettings = new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()};
-            ApiMockerConfig apiMockerConfig;
+            return _config;
+        }
 
-            try
+        public async Task<string> GetMockedResponse(string fileName, string folder = null)
+        {
+            if (string.IsNullOrEmpty(fileName))
             {
-                var deserializedConfig = JsonConvert.DeserializeObject<ApiMockerConfig>(fileContent, serializerSettings);
-                apiMockerConfig = deserializedConfig;
-            }
-            catch
-            {
-                throw new JsonReaderException($"Invalid JSON in file {fullFilePath}");
+                _logger.LogWarning($"Filename is empty");
+                return string.Empty;
             }
 
-            return apiMockerConfig;
+            var fullFilePath = string.IsNullOrEmpty(folder) ? _fileSettingsProvider.GetFullFilePath(fileName, MocksDefaultFolder) : _fileSettingsProvider.GetFullFilePath(fileName, folder, false);
+            if (!_fileSettingsProvider.FileExists(fullFilePath))
+            {
+                _logger.LogInformation($"File not found {fullFilePath}");
+                return string.Empty;
+            }
+
+            string content = await _fileSettingsProvider.GetFileContent(fullFilePath);
+
+            return content;
         }
     }
 }

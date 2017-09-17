@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ApiMockerDotNet.Web.Utils;
 using ApiMockerDotNet.Web.Filters;
+using ApiMockerDotNet.Web.Repositories;
 using Microsoft.Extensions.Logging.Console;
 
 namespace ApiMockerDotNet.Web
@@ -38,8 +39,8 @@ namespace ApiMockerDotNet.Web
                 loggerFactory.AddProvider(new ColoredConsoleLoggerProvider(LogLevel.Information, Console.ForegroundColor));
             }
             var logger = loggerFactory.CreateLogger("ApiMockerLog");
-            IApiMockerManager apiMockerManager = new ApiMockerManager(logger, ApiMockerCmdParams.ConfigFile);
-            app.UseMiddleware<CallsInterceptorMiddleware>(apiMockerManager, logger);     
+            IApiMockerConfigRepository apiMockerConfigRepository = new ApiMockerConfigRepository(new FileSettingsProvider(), logger);
+            app.UseMiddleware<CallsInterceptorMiddleware>(apiMockerConfigRepository, logger);     
         }
 
         private bool IgnoreSystemLogs(string message, LogLevel logLevel)
@@ -48,7 +49,7 @@ namespace ApiMockerDotNet.Web
             {
                 return true;
             }
-
+            
             return false;
         }
     }

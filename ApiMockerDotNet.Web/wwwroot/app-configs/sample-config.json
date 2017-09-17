@@ -1,6 +1,7 @@
 ﻿{
   "note": "sample config",
-  "webServiceMocks": [
+  "mocksFolder": null,
+  "serviceMocks": [
     {
       "name": "test service 1",
       "url": "/GetCities/Italy",

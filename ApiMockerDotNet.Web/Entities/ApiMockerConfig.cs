@@ -10,21 +10,18 @@ namespace ApiMockerDotNet.Web.Entities
         public string Note { get; set; }
         public string MocksFolder { get; set; }
         public bool LogRequestHeaders { get; set; }
-        public List<WebServiceMock> WebServiceMocks { get; set; }
+        public List<WebServiceMock> ServiceMocks { get; set; }
 
         public ApiMockerConfig()
         {
-            this.WebServiceMocks = new List<WebServiceMock>();
+            this.ServiceMocks = new List<WebServiceMock>();
         }
 
-        public bool WebServiceMocksExists(string url)
+        public WebServiceMock GetServiceMock(string url)
         {
-            return this.WebServiceMocks.Any(x => string.Equals(x.Url, url, StringComparison.OrdinalIgnoreCase));
+            return this.ServiceMocks.FirstOrDefault(x => string.Equals(x.Url, url, StringComparison.OrdinalIgnoreCase));
         }
 
-        public WebServiceMock GetWebServiceMock(string url)
-        {
-            return this.WebServiceMocks.FirstOrDefault(x => string.Equals(x.Url, url, StringComparison.OrdinalIgnoreCase));
-        }
+        public bool IsDefaultMocksFolder => string.IsNullOrEmpty(this.MocksFolder);
     }    
 }

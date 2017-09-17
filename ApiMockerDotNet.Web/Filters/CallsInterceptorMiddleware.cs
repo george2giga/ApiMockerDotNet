@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using ApiMockerDotNet.Web.Entities;
+using ApiMockerDotNet.Web.Repositories;
 
 namespace ApiMockerDotNet.Web.Filters
 {
     public class CallsInterceptorMiddleware
     {
         private readonly RequestDelegate next;
-        private IApiMockerManager apiMockerManager;
+        private IApiMockerConfigRepository apiMockerConfigRepository;
         private readonly ILogger logger;        
 
-        public CallsInterceptorMiddleware(RequestDelegate next, IApiMockerManager apiMockerManager, ILogger logger)
+        public CallsInterceptorMiddleware(RequestDelegate next, IApiMockerConfigRepository apiMockerConfigRepository, ILogger logger)
         {
             this.next = next;
-            this.apiMockerManager = apiMockerManager;
+            this.apiMockerConfigRepository = apiMockerConfigRepository;
             this.logger = logger;
         }
 
@@ -30,15 +32,15 @@ namespace ApiMockerDotNet.Web.Filters
             await this.next(context);
             
             var interceptedRoute = context.Request.Path;
-            var apiMockerConfig = this.apiMockerManager.GetApiMockerConfig(ApiMockerCmdParams.ConfigFile);
-            
+            var apiMockerConfig = await apiMockerConfigRepository.GetConfig(ApiMockerCmdParams.ConfigFile);
+
             //search for the incoming request among the registered webservices
-            var webServiceMock = apiMockerConfig.GetWebServiceMock(interceptedRoute);
+            var webServiceMock = apiMockerConfig.GetServiceMock(interceptedRoute);
 
             //if the route is registered and the http verb matches the json entry
             if (webServiceMock != null && string.Equals(webServiceMock.Verb, context.Request.Method, StringComparison.OrdinalIgnoreCase))
             {
-                var content = this.apiMockerManager.GetMockContent(webServiceMock.MockFile);
+                var content = await this.apiMockerConfigRepository.GetMockedResponse(webServiceMock.MockFile, apiMockerConfig.MocksFolder);
                 context.Response.ContentType = webServiceMock.ContentType;
                 context.Response.StatusCode = webServiceMock.HttpStatus;
                 
