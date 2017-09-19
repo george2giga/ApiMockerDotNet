@@ -1,0 +1,30 @@
+﻿{
+  "note": "sample config",
+  "mocksFolder": null,
+  "serviceMocks": [
+    {
+      "name": "test service 1",
+      "url": "/GetCities/Italy",
+      "verb": "get",
+      "mockFile": "sampleResponse1.json",
+      "httpStatus": 200,
+      "contentType": "application/json"
+    },
+    {
+      "name": "test service 2",
+      "url": "/Cities/Add",
+      "verb": "post",
+      "mockFile": "sampleResponse1.json",
+      "httpStatus": 200,
+      "contentType": "application/json"
+    },
+    {
+      "name": "test service 3",
+      "url": "/Plants/Catalog",
+      "verb": "get",
+      "mockFile": "sampleResponse2.xml",
+      "httpStatus": 200,
+      "contentType": "text/xml"
+    }
+  ]
+}

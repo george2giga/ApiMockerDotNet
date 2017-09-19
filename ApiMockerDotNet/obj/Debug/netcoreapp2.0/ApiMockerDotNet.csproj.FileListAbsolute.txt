@@ -11,3 +11,4 @@ C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotN
 C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.AssemblyInfo.cs
 C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.dll
 C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.pdb
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.csprojResolveAssemblyReference.cache

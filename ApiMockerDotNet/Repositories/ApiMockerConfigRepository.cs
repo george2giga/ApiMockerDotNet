@@ -30,7 +30,7 @@ namespace ApiMockerDotNet.Repositories
                 if (!_fileSettingsProvider.FileExists(fullFilePath))
                 {
                     _logger.LogError($"File not found {fullFilePath} /n ApiMockerDotNet cannot start without a valid config file");
-                    _logger.LogInformation($"Please add a config file in the {ConfigsFolder} folder");
+                    _logger.LogError($"Please add a config file in the {ConfigsFolder} folder");
                 }
 
                 var fileContent = await _fileSettingsProvider.GetFileContent(fullFilePath);
@@ -44,8 +44,7 @@ namespace ApiMockerDotNet.Repositories
                 catch
                 {
                     _logger.LogError($"Invalid JSON in config file {fullFilePath}");
-                    _logger.LogInformation($"Please add a valid file in the {ConfigsFolder} folder");
-                    _config = new ApiMockerConfig();
+                    _logger.LogError($"Please add a valid file in the {ConfigsFolder} folder");
                 }
             }
 

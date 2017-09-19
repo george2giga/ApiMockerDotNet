@@ -28,6 +28,11 @@ namespace ApiMockerDotNet.Middlewares
             var interceptedRoute = context.Request.Path;
             var apiMockerConfig = await _apiMockerConfigRepository.GetConfig(ApiMockerCmdParams.ConfigFile);
 
+            if (apiMockerConfig == null)
+            {
+                return;
+            }
+            
             //search for the incoming request among the registered webservices
             var webServiceMock = apiMockerConfig.GetServiceMock(interceptedRoute);
 
@@ -54,7 +59,7 @@ namespace ApiMockerDotNet.Middlewares
             }
 
             // Call the next delegate/middleware in the pipeline
-            //await this.next(context);
+            //await _next(context);
         }
     }
 }

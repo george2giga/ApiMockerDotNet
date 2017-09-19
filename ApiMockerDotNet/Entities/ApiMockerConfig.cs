@@ -8,7 +8,6 @@ namespace ApiMockerDotNet.Entities
     {    
         public string Note { get; set; }
         public string MocksFolder { get; set; }
-        public bool LogRequestHeaders { get; set; }
         public List<WebServiceMock> ServiceMocks { get; set; }
 
         public ApiMockerConfig()
