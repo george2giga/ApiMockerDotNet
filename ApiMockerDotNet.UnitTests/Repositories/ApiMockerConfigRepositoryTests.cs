@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ApiMockerDotNet.Repositories;
@@ -25,23 +24,33 @@ namespace ApiMockerDotNet.UnitTests.Repositories
         }
 
         [Fact]
-        public async Task EnsureErrorIsLoggedIfConfigFileIsNotProvided()
+        public async Task EnsureFileNotFoundErrorIsLoggedIfConfigFileIsNotProvided()
         {
             //Arrange
             _fileSettingsProvider.Setup(x => x.GetFullFilePath(It.IsAny<string>(), It.IsAny<string>(), true)).Returns("hello.json");
             _fileSettingsProvider.Setup(x => x.FileExists(It.IsAny<string>())).Returns(false);
-            //_logger.Setup(x => x.LogError(It.IsAny<string>(), null));
-            _logger.Verify(x => x.Log(LogLevel.Error,
-                It.IsAny<EventId>(),
-                It.Is<FormattedLogValues>(v => v.ToString().StartsWith("File not found")),
-                It.IsAny<Exception>(), It.IsAny<Func<object, Exception, string>>()));
 
             //Act
             var result = await _apiMockerConfigRepository.GetConfig("hello.json");
 
             // Assert
-            //_logger.Verify(x => x.LogError(It.Is<string>(y => y.StartsWith("File not found")), null), Times.Once());
+            _logger.VerifyLog(LogLevel.Error, s => s.StartsWith("File not found"));
         }
 
+        [Fact]
+        public async Task EnsureInvalid JSONErrorIsLoggedIfInvalidConfigFileProvided()
+        {
+            //Arrange
+            var badFormatFileName = "badFormatConfig.json";
+            _fileSettingsProvider.Setup(x => x.GetFullFilePath(It.IsAny<string>(), It.IsAny<string>(), true)).Returns(badFormatFileName);
+            _fileSettingsProvider.Setup(x => x.FileExists(It.IsAny<string>())).Returns(false);
+            _fileSettingsProvider.Setup(x=> x.GetFileContent(badFormatFileName)).ReturnsAsync("badformat.json");
+
+            //Act
+            var result = await _apiMockerConfigRepository.GetConfig("hello.json");
+
+            // Assert
+            _logger.VerifyLog(LogLevel.Error, s => s.StartsWith("File not found"));
+        }
     }
 }
