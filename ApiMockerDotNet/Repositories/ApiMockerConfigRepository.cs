@@ -12,6 +12,7 @@ namespace ApiMockerDotNet.Repositories
         private readonly IFileSettingsProvider _fileSettingsProvider;
         private readonly ILogger<ApiMockerConfigRepository> _logger;
         private static ApiMockerConfig _config;
+        //private ApiMockerConfig _config;
 
         private const string ConfigsFolder = "app-configs";
         private const string MocksDefaultFolder = "app-mocks";
@@ -31,10 +32,17 @@ namespace ApiMockerDotNet.Repositories
                 {
                     _logger.LogError($"File not found {fullFilePath} /n ApiMockerDotNet cannot start without a valid config file");
                     _logger.LogError($"Please add a config file in the {ConfigsFolder} folder");
+                    //config not found, exit the method and try again
+                    return _config;
                 }
 
                 var fileContent = await _fileSettingsProvider.GetFileContent(fullFilePath);
-                var serializerSettings = new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()};
+
+                JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+                {
+                    MissingMemberHandling = MissingMemberHandling.Error,
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
 
                 try
                 {
@@ -45,6 +53,7 @@ namespace ApiMockerDotNet.Repositories
                 {
                     _logger.LogError($"Invalid JSON in config file {fullFilePath}");
                     _logger.LogError($"Please add a valid file in the {ConfigsFolder} folder");
+                    //invalid json, killing the exception, try again with a valid file
                 }
             }
 

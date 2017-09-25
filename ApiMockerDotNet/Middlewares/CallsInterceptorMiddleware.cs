@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using ApiMockerDotNet.Entities;
 using ApiMockerDotNet.Repositories;
 
 namespace ApiMockerDotNet.Middlewares
@@ -11,7 +12,8 @@ namespace ApiMockerDotNet.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly IApiMockerConfigRepository _apiMockerConfigRepository;
-        private readonly ILogger<CallsInterceptorMiddleware> _logger;        
+        private readonly ILogger<CallsInterceptorMiddleware> _logger;
+        private static ApiMockerConfig _currentApiMockerConfig;
 
         public CallsInterceptorMiddleware(RequestDelegate next, IApiMockerConfigRepository apiMockerConfigRepository, ILogger<CallsInterceptorMiddleware> logger)
         {
@@ -19,6 +21,8 @@ namespace ApiMockerDotNet.Middlewares
             _apiMockerConfigRepository = apiMockerConfigRepository;
             _logger = logger;
         }
+
+
 
         public async Task Invoke(HttpContext context)
         {
