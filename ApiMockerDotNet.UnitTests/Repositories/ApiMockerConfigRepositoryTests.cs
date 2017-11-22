@@ -7,7 +7,6 @@ using ApiMockerDotNet.Repositories;
 using ApiMockerDotNet.Utils;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Internal;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -15,7 +14,7 @@ using Xunit;
 
 namespace ApiMockerDotNet.UnitTests.Repositories
 {
-    public class ApiMockerConfigRepositoryTests : IDisposable
+    public class ApiMockerConfigRepositoryTests
     {
         private readonly Mock<IFileSettingsProvider> _fileSettingsProvider;
         private readonly Mock<ILogger<ApiMockerConfigRepository>> _logger;
@@ -107,11 +106,6 @@ namespace ApiMockerDotNet.UnitTests.Repositories
                     }
                 }
             };
-        }
-
-        public void Dispose()
-        {
-            this._apiMockerConfigRepository.GetConfig()
         }
     }
 }

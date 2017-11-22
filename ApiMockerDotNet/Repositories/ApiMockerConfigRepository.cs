@@ -11,8 +11,7 @@ namespace ApiMockerDotNet.Repositories
     {
         private readonly IFileSettingsProvider _fileSettingsProvider;
         private readonly ILogger<ApiMockerConfigRepository> _logger;
-        private static ApiMockerConfig _config;
-        //private ApiMockerConfig _config;
+        private ApiMockerConfig _config;
 
         private const string ConfigsFolder = "app-configs";
         private const string MocksDefaultFolder = "app-mocks";

@@ -46,7 +46,7 @@ namespace ApiMockerDotNet
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
-                .UseUrls($"http://localhost:{portNumber}/")
+                .UseUrls($"http://*:{portNumber}/")
                 .ConfigureLogging(x => x.ClearProviders())
                 .Build();
         }
