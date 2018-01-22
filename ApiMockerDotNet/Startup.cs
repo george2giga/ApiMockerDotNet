@@ -16,8 +16,9 @@ namespace ApiMockerDotNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IFileSettingsProvider, FileSettingsProvider>();
-            services.AddSingleton<IApiMockerConfigRepository, ApiMockerConfigRepository>();
-            
+            //services.AddSingleton<IApiMockerConfigRepository, ApiMockerConfigRepository>();
+            services.AddTransient<IApiMockerConfigRepository, ApiMockerConfigRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

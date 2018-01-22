@@ -24,7 +24,7 @@ namespace ApiMockerDotNet.Middlewares
         public async Task Invoke(HttpContext context)
         {
             var stopWatch = Stopwatch.StartNew();
-            await _next(context);
+            //await _next(context);
             
             var interceptedRoute = context.Request.Path;
             var apiMockerConfig = await _apiMockerConfigRepository.GetConfig(ApiMockerCmdParams.ConfigFile);
@@ -60,7 +60,7 @@ namespace ApiMockerDotNet.Middlewares
             }
 
             // Call the next delegate/middleware in the pipeline
-            //await _next(context);
+            await _next(context);
         }
     }
 }

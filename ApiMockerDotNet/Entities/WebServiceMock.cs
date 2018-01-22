@@ -15,5 +15,7 @@ namespace ApiMockerDotNet.Entities
         public int HttpStatus { get; set; }
         [JsonProperty(Required = Required.Always)]
         public string ContentType { get; set; }
+
+
     }
 }

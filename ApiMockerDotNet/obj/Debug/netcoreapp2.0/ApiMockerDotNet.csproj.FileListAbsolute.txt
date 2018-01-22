@@ -1,0 +1,14 @@
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\wwwroot\app-configs\sample-config.json
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\wwwroot\app-mocks\sampleResponse1.json
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\wwwroot\app-mocks\sampleResponse2.xml
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\ApiMockerDotNet.deps.json
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\ApiMockerDotNet.runtimeconfig.json
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\ApiMockerDotNet.runtimeconfig.dev.json
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\ApiMockerDotNet.dll
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\bin\Debug\netcoreapp2.0\ApiMockerDotNet.pdb
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.csprojResolveAssemblyReference.cache
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.csproj.CoreCompileInputs.cache
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.AssemblyInfoInputs.cache
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.AssemblyInfo.cs
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.dll
+C:\GitRepo\ApiMockerDotNet\ApiMockerDotNet\obj\Debug\netcoreapp2.0\ApiMockerDotNet.pdb
