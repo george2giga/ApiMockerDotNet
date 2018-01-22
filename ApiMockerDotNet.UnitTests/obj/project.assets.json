@@ -8366,7 +8366,7 @@
       ]
     },
     "Remotion.Linq/2.1.1": {
-      "sha512": "iYHcDPKLRnQpbZ8ooOYn5cHA+k9m16G7dDC7nCUeNcGz0O+2Q5lQJKUfmrZ9L1tXx4ihtVS6CTRrMmKmKoKGHA==",
+      "sha512": "IJn0BqkvwEDpP+2qjvci7n4/a9f7DhKESLWb2/uG4xQh3rTkGTBUz69bI4IivCoKkTFAqjXxYDZw2K/npohjsw==",
       "type": "package",
       "path": "remotion.linq/2.1.1",
       "files": [
@@ -10855,7 +10855,7 @@
       ]
     },
     "System.Net.Security/4.3.0": {
-      "sha512": "QqmE8mfsezFI+6J6JE4sTcRID+u4PU3SewF1thPLaxEORDu5086riEjPbIOCsbv8KXxABSDV/M09feua0tpgEA==",
+      "sha512": "IgJKNfALqw7JRWp5LMQ5SWHNKvXVz094U6wNE3c1i8bOkMQvgBL+MMQuNt3xl9Qg9iWpj3lFxPZEY6XHmROjMQ==",
       "type": "package",
       "path": "system.net.security/4.3.0",
       "files": [
@@ -13710,7 +13710,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Giorgio\\.nuget\\packages\\": {},
+    "C:\\Users\\minardig\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -13719,17 +13719,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\GitRepo\\ApiMockerDotNet\\ApiMockerDotNet.UnitTests\\ApiMockerDotNet.UnitTests.csproj",
+      "projectUniqueName": "C:\\Repository\\ApiMockerDotNet\\ApiMockerDotNet.UnitTests\\ApiMockerDotNet.UnitTests.csproj",
       "projectName": "ApiMockerDotNet.UnitTests",
-      "projectPath": "C:\\GitRepo\\ApiMockerDotNet\\ApiMockerDotNet.UnitTests\\ApiMockerDotNet.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\Giorgio\\.nuget\\packages\\",
-      "outputPath": "C:\\GitRepo\\ApiMockerDotNet\\ApiMockerDotNet.UnitTests\\obj\\",
+      "projectPath": "C:\\Repository\\ApiMockerDotNet\\ApiMockerDotNet.UnitTests\\ApiMockerDotNet.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\minardig\\.nuget\\packages\\",
+      "outputPath": "C:\\Repository\\ApiMockerDotNet\\ApiMockerDotNet.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Giorgio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\minardig\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13742,8 +13742,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\GitRepo\\ApiMockerDotNet\\ApiMockerDotNet\\ApiMockerDotNet.csproj": {
-              "projectPath": "C:\\GitRepo\\ApiMockerDotNet\\ApiMockerDotNet\\ApiMockerDotNet.csproj"
+            "C:\\Repository\\ApiMockerDotNet\\ApiMockerDotNet\\ApiMockerDotNet.csproj": {
+              "projectPath": "C:\\Repository\\ApiMockerDotNet\\ApiMockerDotNet\\ApiMockerDotNet.csproj"
             }
           }
         }
@@ -13759,28 +13759,28 @@
         "dependencies": {
           "FluentAssertions": {
             "target": "Package",
-            "version": "4.19.4"
-          },
-          "xunit.runner.visualstudio": {
-            "target": "Package",
-            "version": "2.2.0"
-          },
-          "Moq": {
-            "target": "Package",
-            "version": "4.7.99"
-          },
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
-          },
-          "xunit": {
-            "target": "Package",
-            "version": "2.2.0"
+            "version": "[4.19.4, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-            "version": "15.3.0"
+            "version": "[15.3.0, )"
+          },
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "[2.0.0, )",
+            "autoReferenced": true
+          },
+          "Moq": {
+            "target": "Package",
+            "version": "[4.7.99, )"
+          },
+          "xunit": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
+          "xunit.runner.visualstudio": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           }
         },
         "imports": [
