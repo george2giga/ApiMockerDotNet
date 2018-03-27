@@ -25,10 +25,13 @@ namespace ApiMockerDotNet.Entities
             return this.ServiceMocks.FirstOrDefault(x => string.Equals(x.Url, url, StringComparison.OrdinalIgnoreCase));
         }
 
-        //private WebServiceMock GetWildCardMatch(string url)
-        //{
-            
-        //}
+        private WebServiceMock GetWildCardMatch(string url)
+        {
+            var position = url.IndexOf('*');
+            var subText = url.Substring(1, position - 1);
+            var serviceMock = GetExactMatch(subText);
+            return serviceMock;
+        }
 
         public bool IsDefaultMocksFolder => string.IsNullOrEmpty(this.MocksFolder);
     }    
