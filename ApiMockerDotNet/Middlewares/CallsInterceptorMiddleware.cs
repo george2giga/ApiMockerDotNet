@@ -33,7 +33,7 @@ namespace ApiMockerDotNet.Middlewares
             apiMockerConfig = await apiMockerConfigRepository.GetConfig(ApiMockerCmdParams.ConfigFile);
                                    
             //search for the incoming request among the registered webservices
-            var webServiceMock = apiMockerConfig.GetServiceMock(interceptedRoute);
+            var webServiceMock = apiMockerConfig.GetServiceMockByUrl(interceptedRoute);
 
             //if the route is registered and the http verb matches the json entry
             if (webServiceMock != null && string.Equals(webServiceMock.Verb, context.Request.Method, StringComparison.OrdinalIgnoreCase))

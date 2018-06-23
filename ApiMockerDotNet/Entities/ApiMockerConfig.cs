@@ -17,7 +17,7 @@ namespace ApiMockerDotNet.Entities
             this.ServiceMocks = new List<WebServiceMock>();
         }
 
-        public WebServiceMock GetServiceMock(string url)
+        public WebServiceMock GetServiceMockByUrl(string url)
         {
             var webServiceMock = url.Contains('*') ? GetWildCardMatch(url) : GetExactMatch(url);
             return webServiceMock;
@@ -34,6 +34,12 @@ namespace ApiMockerDotNet.Entities
             var subText = url.Substring(1, position - 1);
             var serviceMock = GetExactMatch(subText);
             return serviceMock;
+        }
+
+        private WebServiceMock GetStartsWith(string url)
+        {
+            var closestMatch = this.ServiceMocks.Where(y=>y.Url.Length <= url.Length).OrderByDescending(x => url.StartsWith(x.Url)).FirstOrDefault();
+            return closestMatch;
         }
 
         public bool IsDefaultMocksFolder => string.IsNullOrEmpty(this.MocksFolder);
